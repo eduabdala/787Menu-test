@@ -11,28 +11,45 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: stretch;
+        }
+        header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .image-container {
             flex-grow: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-             /* Evita que a imagem exceda o contêiner */
         }
         img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Mantém a proporção, sem cortar a imagem */
+            object-fit: contain;
+            display: none; /* Inicia com as imagens ocultas */
+        }
+        img.active {
+            display: block; /* Mostra apenas a imagem ativa */
         }
     </style>
+    <script>
+        function changeImage(imageNumber) {
+            var images = document.querySelectorAll('img');
+            images.forEach(img => img.classList.remove('active'));
+            document.getElementById('image' + imageNumber).classList.add('active');
+        }
+    </script>
 </head>
 <body>
+    <header>
+        <button onclick="changeImage(1)">Cardápio Página 1</button>
+        <button onclick="changeImage(2)">Cardápio Página 2</button>
+    </header>
     <div class="image-container">
-        <img src="1.png" alt="Cardápio página 1">
-    </div>
-    <div class="image-container">
-        <img src="2.png" alt="Cardápio página 2">
+        <img id="image1" src="1.png" alt="Cardápio página 1" class="active">
+        <img id="image2" src="2.png" alt="Cardápio página 2">
     </div>
 </body>
 </html>
